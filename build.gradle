@@ -1,0 +1,35 @@
+buildscript {
+    ext { //전역변수 설정
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+//위에 선언한 플러그인 의존성들을 적용할 것인지를 결정(아래 4개는 필수)
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management' //스프링 부트의 의존성들을 관리해주는 플러그인
+
+group 'org.seongrak'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+test {
+    useJUnitPlatform()
+}
